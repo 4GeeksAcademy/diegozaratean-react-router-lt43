@@ -1,25 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+import About from "./about";
+import Contact from "./contact";
+import Service from "./services";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from "./header";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
 
-//create your first component
 const Home = () => {
+	const [secreto,setSecreto] = useState('tengo un secreto')
 	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
+		<>
+			<BrowserRouter>			
+				<Header />
+				<Routes>
+					<Route path="/" element={<About />} />
+					<Route path="/contactanos" element={<Contact />} />
+					<Route path="/servicios" element={<Service />} />
+				</Routes>
+				<p>
+
+					Sabias que : {secreto}
+					<button onClick={()=>setSecreto('los humanos vienen de los anunaquis')}>Revelar secreto</button>
+				</p>
+				<h3>footer</h3>
+			</BrowserRouter>
+		</>
 	);
 };
 
